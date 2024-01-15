@@ -14,7 +14,7 @@ public class circle extends figure implements Cloneable {
     public void workCircle() {
         d = r * 2;
         area = 3.14 * Math.pow(r, 2);
-        perimeter = 3.14 * 2 * r;
+        perimeter = (int) (3.14 * 2 * r);
     }
 
     public double Area() {

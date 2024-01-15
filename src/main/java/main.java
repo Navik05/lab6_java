@@ -1,93 +1,62 @@
-import java.util.Scanner;
+import java.util.*;
+
 public class main {
     public static void main(String[] args) throws Exception {
-        int i, f = 1;
+        int i, j, f = 1;
         double e, s = 0, p = 0;
         double[] sides = new double[3];
         square one = null;
         circle two = null;
         triangle three = null;
+        CompareFigure compareFigure = new CompareFigure();
+        Set set = new TreeSet(compareFigure);
         Scanner in = new Scanner(System.in);
-        System.out.print("\n1-квадрат\n2-круг\n3-треугольник\nВыберите фигуру:");
-        figure.setType(in.nextInt());
+        j = 0;
         //Ввод и обработка
-        switch (two.type) {
-            case 1:
-                System.out.print("Длина стороны квадрата:");
-                e = in.nextDouble();
-                one = new square(e);
-                one.Area();
-                break;
-            case 2:
-                System.out.print("Радиус круга:");
-                e = in.nextDouble();
-                two = new circle(e);
-                two.workCircle();
-                break;
-            case 3:
-                System.out.print("Длина сторон треугольника:");
-                for (i = 0; i < 3; i++) {
-                    sides[i] = in.nextDouble();
-                }
-                three = new triangle(sides);
-                try {
-                    three.workTriangle();
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
-                    f = 0;
-                }
-            default:
-                ;
-        }
-        //Клонирование
-        circle tw = null;
-        try{
-            tw = two.clone();
-        }
-        catch(CloneNotSupportedException ex){
-
-            System.out.println("Клонирование не удалось");
-        }
-        //Вывод результатов
-        if (f == 1) {
-            System.out.print("\nФигура: ");
-            switch (tw.type) {
+        do {
+            System.out.print("\n1-квадрат\n2-круг\n3-треугольник\nВыберите фигуру:");
+            figure.setType(in.nextInt());
+            switch (two.type) {
                 case 1:
-                    System.out.print("квадрат");
-                    e = one.getDiagonal();
-                    System.out.printf("\nДиагональ: %f", e);
-                    s = one.area;
-                    p = one.getPerimeter();
+                    System.out.print("Длина стороны квадрата:");
+                    e = in.nextDouble();
+                    one = new square(e);
+                    one.Area();
+                    set.add(one);
                     break;
                 case 2:
-                    System.out.println("круг");
-                    e = tw.getD();
-                    System.out.printf("Диаметр: %f", e);
-                    s = tw.Area();
-                    p = tw.getPerimeter();
+                    System.out.print("Радиус круга:");
+                    e = in.nextDouble();
+                    two = new circle(e);
+                    two.workCircle();
+                    set.add(two);
                     break;
                 case 3:
-                    i = three.getView();
-                    switch (i) {
-                        case 1:
-                            System.out.print("равносторонний");
-                            break;
-                        case 2:
-                            System.out.print("равнобедренный");
-                            break;
-                        case 3:
-                            System.out.print("разносторонний");
-                            break;
-                        default:
-                            ;
+                    System.out.print("Длина сторон треугольника:");
+                    for (i = 0; i < 3; i++) {
+                        sides[i] = in.nextDouble();
                     }
-                    System.out.print(" треугольник");
-                    s = three.Area();
-                    p = three.getPerimeter();
-                    break;
+                    three = new triangle(sides);
+                    try {
+                        three.workTriangle();
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                        f = 0;
+                    }
+                    set.add(three);
+                default:
+                    ;
             }
-            System.out.printf("\nПлощадь: %f", s);
-            System.out.printf("\nПериметр: %f\n", p);
-        }
+            j++;
+        }while (j < 3);
+        //Вывод результатов
+        System.out.println(set);
+    }
+}
+
+class CompareFigure implements Comparator<figure>{
+    @Override
+    public int compare(figure o1, figure o2){
+        return o1.perimeter -o2.perimeter;
     }
 }

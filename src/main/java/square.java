@@ -11,7 +11,7 @@ public class square extends figure{
     public double Area(){
         diagonal=Math.sqrt(2)*a;
         area=Math.pow(a,2);
-        perimeter = a * 4;
+        perimeter = (int) (a * 4);
         return 0;
     }
 }

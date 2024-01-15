@@ -1,6 +1,6 @@
 public abstract class figure {
     protected double area;
-    protected double perimeter;
+    protected int perimeter;
     protected static int type;
     public figure(){
         area = 0;

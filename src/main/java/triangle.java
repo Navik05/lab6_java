@@ -10,7 +10,7 @@ public class triangle extends figure{
     }
     public void workTriangle()throws Exception {
         double p;
-        perimeter = sides[0] + sides[1] + sides[2];
+        perimeter = (int) (sides[0] + sides[1] + sides[2]);
         p = perimeter / 2;
         area = Math.sqrt(p * (p - sides[0]) * (p - sides[1]) * (p - sides[2]));
         if (area == 0) {
