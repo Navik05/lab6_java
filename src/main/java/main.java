@@ -39,10 +39,19 @@ public class main {
             default:
                 ;
         }
+        //Клонирование
+        circle tw = null;
+        try{
+            tw = two.clone();
+        }
+        catch(CloneNotSupportedException ex){
+
+            System.out.println("Клонирование не удалось");
+        }
         //Вывод результатов
         if (f == 1) {
             System.out.print("\nФигура: ");
-            switch (two.type) {
+            switch (tw.type) {
                 case 1:
                     System.out.print("квадрат");
                     e = one.getDiagonal();
@@ -52,10 +61,10 @@ public class main {
                     break;
                 case 2:
                     System.out.println("круг");
-                    e = two.getD();
+                    e = tw.getD();
                     System.out.printf("Диаметр: %f", e);
-                    s = two.Area();
-                    p = two.getPerimeter();
+                    s = tw.Area();
+                    p = tw.getPerimeter();
                     break;
                 case 3:
                     i = three.getView();
